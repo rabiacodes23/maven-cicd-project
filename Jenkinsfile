@@ -3,7 +3,7 @@ pipeline {
         label 'ubuntu-agent'
     }
      triggers {
-        pollSCM('H/2 * * * *')
+        pollSCM('H/10 * * * *')
     }
 
     options {
