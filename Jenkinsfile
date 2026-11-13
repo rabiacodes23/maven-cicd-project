@@ -47,6 +47,7 @@ pipeline {
     post {
         success {
             echo 'BUILD SUCCESSFUL!'
+	    echo 'pollscm working successfully'
         }
         failure {
             echo 'BUILD FAILED! Check the console output.'
