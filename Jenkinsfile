@@ -3,6 +3,10 @@ pipeline {
         label 'ubuntu-agent'
     }
 
+     triggers {
+        pollSCM('H/2 * * * *')
+    }
+
     options {
         skipDefaultCheckout()
     }
