@@ -3,11 +3,15 @@ pipeline {
         label 'ubuntu-agent'
     }
 
+    options {
+        skipDefaultCheckout()
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master',
-                    url: 'https://github.com/rabiacodes23/maven-cicd-project.git'
+                deleteDir()
+                sh 'git clone --branch master https://github.com/rabiacodes23/maven-cicd-project.git .'
             }
         }
 
