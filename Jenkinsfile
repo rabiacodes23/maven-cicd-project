@@ -58,6 +58,7 @@ pipeline {
 
         always {
             echo 'Pipeline execution completed.'
+	    echo 'testing for jenkins trigger'
         }
     }
 }
