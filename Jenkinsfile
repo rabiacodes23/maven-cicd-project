@@ -5,13 +5,16 @@ pipeline {
 
     options {
         skipDefaultCheckout()
+        timestamps()
     }
 
     stages {
         stage('Checkout') {
             steps {
                 deleteDir()
-                sh 'git clone --branch master https://github.com/rabiacodes23/maven-cicd-project.git .'
+
+                git branch: 'master',
+                    url: 'https://github.com/rabiacodes23/maven-cicd-project.git'
             }
         }
 
@@ -32,23 +35,29 @@ pipeline {
                 sh 'mvn package'
             }
         }
-	stage('Archive Artifact') {
-	    steps {
-        	archiveArtifacts artifacts: 'target/*.jar',
-                        fingerprint: true
-    	    }
-	}
+
+        stage('Archive Artifact') {
+            steps {
+                archiveArtifacts(
+                    artifacts: 'target/*.jar',
+                    fingerprint: true
+                )
+            }
+        }
     }
-    
 
     post {
         success {
             echo 'BUILD SUCCESSFUL!'
-	    echo 'pollscm working successfully through ui method'
-
+            echo 'Maven CI pipeline completed successfully.'
         }
+
         failure {
             echo 'BUILD FAILED! Check the console output.'
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
