@@ -2,9 +2,6 @@ pipeline {
     agent {
         label 'ubuntu-agent'
     }
-     triggers {
-        pollSCM('H/10 * * * *')
-    }
 
     options {
         skipDefaultCheckout()
@@ -51,8 +48,6 @@ pipeline {
         }
         failure {
             echo 'BUILD FAILED! Check the console output.'
-	    echo "testing webhook..."
-	    echo "webhook successful"
         }
     }
 }
