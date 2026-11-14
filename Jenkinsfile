@@ -10,14 +10,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                deleteDir()
-
-                git branch: 'master',
-                    url: 'https://github.com/rabiacodes23/maven-cicd-project.git'
-            }
-        }
-
+	    steps {
+	        deleteDir()
+	        sh 'git clone --branch master https://github.com/rabiacodes23/maven-cicd-project.git .'
+	        }
+	}
         stage('Build') {
             steps {
                 sh 'mvn clean compile'
